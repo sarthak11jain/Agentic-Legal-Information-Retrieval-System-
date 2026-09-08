@@ -72,12 +72,12 @@ flowchart TD
 
     classDef input fill:#eef2ff,stroke:#6366f1,color:#1e293b;
     classDef retrieval fill:#dcfce7,stroke:#22c55e,color:#14532d;
-    classDef graph fill:#fef3c7,stroke:#f59e0b,color:#78350f;
+    classDef graphstage fill:#fef3c7,stroke:#f59e0b,color:#78350f;
     classDef rerank fill:#fae8ff,stroke:#d946ef,color:#701a75;
     classDef output fill:#cffafe,stroke:#06b6d4,color:#164e63;
     class Q input;
     class T,D,E,R,F retrieval;
-    class H,C,G,X graph;
+    class H,C,G,X graphstage;
     class P,W,CE,L,V rerank;
     class O output;
 ```
