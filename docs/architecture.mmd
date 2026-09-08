@@ -1,0 +1,12 @@
+flowchart TD
+    A[English legal question] --> B[German translation and query decomposition]
+    B --> C[Subquery embeddings]
+    C --> D[Dense law-article retrieval]
+    D --> E[Reciprocal Rank Fusion]
+    E --> F[Citation and legal-book hints]
+    F --> G[Law-reference graph expansion]
+    G --> H[Court-law co-citation expansion]
+    H --> I[TF-IDF reranking]
+    I --> J[Cross-encoder reranking]
+    J --> K[LLM KEEP/REMOVE filtering]
+    K --> L[Ranked legal citations]

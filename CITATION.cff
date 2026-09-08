@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+title: "Graph-Augmented Legal Information Retrieval System"
+message: "If you use this project, please cite the repository and the Kaggle competition."
+type: software
+repository-code: "https://github.com/sarthak11jain/Agentic-Legal-Information-Retrieval-System-"
+url: "https://github.com/sarthak11jain/Agentic-Legal-Information-Retrieval-System-"
+abstract: >-
+  An agentic, graph-augmented retrieval pipeline for identifying Swiss legal
+  sources relevant to complex legal questions.
+license: MIT
+version: 0.1.0
+date-released: 2026-09-08
+authors:
+  - name: sarthak11jain
+keywords:
+  - legal information retrieval
+  - graph retrieval
+  - retrieval augmented generation
+  - Swiss law
+  - information retrieval

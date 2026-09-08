@@ -1,0 +1,22 @@
+.venv/
+.cache/
+data/
+data-in/
+submissions/
+.env
+# Generated experiment outputs; keep the project log trackable.
+context/*
+!context/commits.md
+!context/proc_vs_subs.md
+!data/data.md
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/

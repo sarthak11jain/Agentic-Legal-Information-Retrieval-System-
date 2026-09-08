@@ -1,0 +1,17 @@
+# Documented defaults for the research-best retrieval cascade.
+rrf_k = 60
+subquery_top_k = 200
+domain_top_k = 10
+graph_mode = "both"
+graph_seed_k = 200
+graph_boost = 0.10
+court_anchor_ranked_k = 5
+court_anchor_top_targets = 50
+court_anchor_min_count = 2
+court_anchor_boost = 0.08
+rerank_top_k = 50
+
+[weights]
+tfidf = 0.40
+cosine = 0.20
+cross_encoder = 0.40

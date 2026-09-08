@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "graph-augmented-legal-information-retrieval"
+version = "0.1.0"
+description = "Graph-augmented retrieval of Swiss legal citations from complex legal questions"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy==2.2.6",
+    "openai==2.37.0",
+    "pandas==2.3.3",
+    "polars==1.44.1",
+    "pyarrow==25.0.1",
+    "python-dotenv==1.2.3",
+    "scikit-learn==1.7.2",
+    "tqdm==4.70.0",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
