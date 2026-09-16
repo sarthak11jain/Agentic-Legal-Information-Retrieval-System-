@@ -401,11 +401,11 @@ This LLM stage does not skip procedural laws. The only automatic freeze rule is 
 
 7. A citation is removed only if the confirmation pass also says `REMOVE`.
 
-This was the best Kaggle setup:
+For this law-side route, the following were public-leaderboard Macro F1 scores:
 
 ```text
-Base retrieval before LLM: 0.23573
-Two-stage LLM with court context: 0.25869
+Base retrieval before LLM (public): 0.23573
+Two-stage LLM with court context (public): 0.25869
 ```
 
 So this final layer improves precision by removing noisy lower-ranked citations while keeping the high-confidence top ranks safe.
@@ -452,7 +452,7 @@ This produces the KAGGLE-STATE-3 base submission:
 context/test_submission_tfidf_cosine_ce_weighted_top50.csv
 ```
 
-Kaggle score:
+Public leaderboard Macro F1:
 
 ```text
 0.23573
@@ -496,7 +496,7 @@ This produces the KAGGLE-STATE-4 best submission:
 context/test_submission_openrouter_qwen36_reasoning_confirm.csv
 ```
 
-Kaggle score:
+Public leaderboard Macro F1:
 
 ```text
 0.25869

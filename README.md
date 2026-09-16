@@ -7,7 +7,7 @@
 [![CI](https://github.com/sarthak11jain/Agentic-Legal-Information-Retrieval-System-/actions/workflows/ci.yml/badge.svg)](https://github.com/sarthak11jain/Agentic-Legal-Information-Retrieval-System-/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Competition](https://img.shields.io/badge/Kaggle-Top%2050-20BEFF?logo=kaggle&logoColor=white)](https://www.kaggle.com/competitions/llm-agentic-legal-information-retrieval)
+[![Competition](https://img.shields.io/badge/Kaggle-44%20of%20584-20BEFF?logo=kaggle&logoColor=white)](https://www.kaggle.com/competitions/llm-agentic-legal-information-retrieval/leaderboard)
 
 </div>
 
@@ -33,18 +33,22 @@ Pure semantic similarity is useful for finding candidates, but it does not fully
 
 ## Results
 
-| Metric | Final submission |
+| Result | Value |
 | --- | ---: |
-| Macro F1 | **0.23** |
-| Kaggle leaderboard | **Top 50** |
+| Final private leaderboard rank | **44 / 584 teams** |
+| Percentile | **Top 8%** |
+| Final private Macro F1 | **0.22252** |
+| Best documented public Macro F1 | **0.27569** |
+| Initial public submission | **0.17058** |
+| Public-score improvement | **+61.6%** |
 | Retrieval target | Citation-level legal sources |
-| Corpus scale | Approximately **2.5M court-decision considerations**, together with a large federal-law article collection |
+| Corpus scale | Approximately **2.47M court-decision considerations**, together with federal-law articles |
 
-The score and ranking above refer to the final competition submission. Additional validation and ablation results are recorded in [`docs/experiment-log.md`](docs/experiment-log.md).
+The final rank and private score come from the completed competition's [private leaderboard](https://www.kaggle.com/competitions/llm-agentic-legal-information-retrieval/leaderboard); Kaggle reports [584 participating teams](https://www.kaggle.com/competitions/llm-agentic-legal-information-retrieval/overview). Public and private scores use different hidden-test subsets and are not directly interchangeable. The public-score progression summarizes this project's documented submissions; additional validation results and ablations are recorded in [`docs/experiment-log.md`](docs/experiment-log.md).
 
 <div align="center">
 
-**Final competition submission · Macro F1 0.23 · Top-50 Kaggle result**
+**44th of 584 teams (top 8%) · Best documented public Macro F1: 0.276**
 
 </div>
 
@@ -138,7 +142,7 @@ The public repository separates stable, testable primitives from the original re
 
 ```bash
 python -m venv .venv
-.venv\\Scripts\\activate        # Windows
+.venv\Scripts\Activate.ps1       # Windows PowerShell
 # source .venv/bin/activate     # macOS/Linux
 pip install -r requirements.txt
 ```
@@ -195,6 +199,7 @@ The full research pipeline requires locally available competition files, precomp
 | [`docs/data.md`](docs/data.md) | Data boundary and local schemas |
 | [`docs/migration-map.md`](docs/migration-map.md) | Relationship between public package and research scripts |
 | [`docs/architecture.mmd`](docs/architecture.mmd) | Editable Mermaid architecture source |
+| [`docs/reusable-project-blueprint.md`](docs/reusable-project-blueprint.md) | Portfolio repository patterns reusable in future projects |
 
 ## Quality checks
 
@@ -205,6 +210,45 @@ python -m unittest discover -s tests -p "test_*.py"
 python -m compileall -q src scripts code
 python scripts/run_demo.py
 ```
+
+## How to build a GitHub-friendly README
+
+This README follows a reusable structure intended for technical reviewers, recruiters, and future collaborators. A strong project README should be easy to skim first and rewarding to study in depth.
+
+### Recommended order
+
+1. **Title and one-line summary** — Name the project clearly and explain the problem it solves in one sentence.
+2. **Badges and navigation** — Show only useful signals such as CI status, language, license, and an official benchmark link. Add short anchor links when the document is long.
+3. **Project disclaimer or scope** — State whether the project is research, production, educational, or experimental. Clarify important limitations early.
+4. **Overview and motivation** — Explain the problem, why it matters, and what makes the approach technically interesting.
+5. **Verified results** — Put the strongest official metric near the top. Identify the evaluation split, submission, or source of the number, and separate official results from experiments and illustrative demos.
+6. **Architecture** — Add one readable diagram showing the main flow. Use a table to map each stage to its purpose and signal.
+7. **Technical approach** — Explain the important design decisions in logical order. Focus on the reasoning behind the components, not a line-by-line tour of the code.
+8. **Reproduction path** — Provide installation commands, a safe smoke demo, and links to the full setup. Make clear which steps require data, credentials, GPUs, or external services.
+9. **Repository map** — Tell the reader where stable source code, scripts, tests, configuration, examples, and deeper documentation live.
+10. **Quality and responsible-use notes** — Show how the project is tested, document data and licensing boundaries, and state where the system should not be trusted.
+11. **References and license** — Link to the competition, paper, dataset, citation metadata, license, or other authoritative sources.
+
+### What the README should focus on
+
+- The project’s problem, outcome, and central engineering idea.
+- The smallest set of details needed to understand the architecture.
+- Results that can be traced to a real evaluation or experiment.
+- A quick path for a reviewer to run or inspect something.
+- Clear boundaries around data, secrets, reproducibility, and responsible use.
+
+### What to avoid
+
+- Leading with a long installation block before explaining the project.
+- Presenting a toy demo as evidence of benchmark performance.
+- Mixing exploratory experiments with the stable implementation without labelling them.
+- Claiming production readiness when the repository still depends on unavailable data or services.
+- Committing credentials, private data, hidden labels, generated caches, or large binary artifacts.
+- Adding diagrams that are decorative, unreadable, or not tested in GitHub’s Markdown renderer.
+
+The detailed, reusable checklist is available in [`docs/reusable-project-blueprint.md`](docs/reusable-project-blueprint.md). For future repositories, keep this information architecture and replace the domain-specific problem, architecture, metrics, data policy, and commands.
+
+For a polished example of this style—using project highlights, architecture diagrams, reproduction instructions, experiment context, and deployment-oriented documentation—see the [sample Kaggle rental product recommendation README](https://github.com/rishaviitd/kaggle.rental.product.recommendation).
 
 ## Data and responsible use
 

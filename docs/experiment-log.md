@@ -1,9 +1,25 @@
+# Experiment Log
+
+## Leaderboard summary
+
+| Result | Macro F1 |
+| --- | ---: |
+| Initial public submission | 0.17058 |
+| Best documented public submission | 0.27569 |
+| Final private leaderboard | 0.22252 |
+
+The documented public score improved by **0.10511 absolute** and **61.62% relative** from the initial submission to the best public submission. The completed private leaderboard placed the project **44th of 584 teams (top 8%)**.
+
+Public and private leaderboard scores use different hidden-test subsets and are not directly interchangeable. Entries labelled `LOCAL-STATE` below are local validation results; entries labelled `KAGGLE-STATE` are public-leaderboard submissions unless explicitly stated otherwise.
+
+## Detailed progression
+
 STARTING-STATE
 
 $ python3 code/dev/law-only/lawside-retrieval/generate_zembed_combined_law_submission.py --test-path data/test.parquet --test-subquery-path data/test_sub_query_zembed.parquet --output-path context/test_submission_zembed_tuned_top4.csv --detail-path context/test_details_zembed_tuned_top4.csv --hint-path context/test_hints_zembed_tuned_top4.csv --book-network-top-books 4 --book-network-boost 0.01 --book-boost 0.005 --graph-mode both --graph-seed-k 200 --graph-boost 0.1
 
 
-this is giving us a kaggle score of 0.17058
+Public leaderboard Macro F1: 0.17058
 
 we have done no cross encoder reranking and no llm reranking 
 
@@ -48,11 +64,11 @@ this uses law_document_side_retrieval with the previous tuned law-side settings 
 - expansion boost is 0.08, top targets per anchor is 50, min co-citation count is 2
 - no court-law naive graph boost, no cross encoder reranking, and no llm reranking
 
-Kaggle score: 0.19293
+Public leaderboard Macro F1: 0.19293
 
 Improvement over STARTING-STATE:
-- old Kaggle score: 0.17058
-- new Kaggle score: 0.19293
+- old public Macro F1: 0.17058
+- new public Macro F1: 0.19293
 - absolute gain: +0.02235
 - relative gain: +13.10%
 
@@ -76,8 +92,8 @@ Court-law TF-IDF reranking trials:
   - hits 48/149
   - recall@100 hits 71/149
 - Kaggle dropped:
-  - previous best Kaggle score: 0.19293
-  - aggressive TF-IDF Kaggle score: 0.18961
+  - previous best public Macro F1: 0.19293
+  - aggressive TF-IDF public Macro F1: 0.18961
   - absolute change: -0.00332
 - read: this was too aggressive. It changed 390/800 test predictions compared with exact-anchor + top5, so TF-IDF became a second retrieval system rather than a light reranker. The val set is small, so the large val jump did not generalize.
 
@@ -112,17 +128,17 @@ Step 2: apply `trials.court_law_tfidf_rerank.rerank_court_law_tfidf_candidates` 
 - `top_targets_per_anchor=50`
 - output top20 to `context/test_submission_exact_anchor_top5_tfidf_conservative.csv`
 
-Kaggle score: 0.20865
+Public leaderboard Macro F1: 0.20865
 
 Improvement over KAGGLE-STATE-1:
-- old Kaggle score: 0.19293
-- new Kaggle score: 0.20865
+- old public Macro F1: 0.19293
+- new public Macro F1: 0.20865
 - absolute gain: +0.01572
 - relative gain: +8.15%
 
 Improvement over STARTING-STATE:
-- old Kaggle score: 0.17058
-- new Kaggle score: 0.20865
+- old public Macro F1: 0.17058
+- new public Macro F1: 0.20865
 - absolute gain: +0.03807
 - relative gain: +22.32%
 
@@ -161,7 +177,7 @@ Failed / rejected variants:
 - aggressive TF-IDF-first experiment from LOCAL-STATE-2 looked strong on val:
   - macro F1 0.2777
   - hits 48/149
-  - Kaggle dropped to 0.18961 from 0.19293
+  - public Macro F1 dropped to 0.18961 from 0.19293
 - root cause:
   - it changed 390/800 test predictions and turned TF-IDF into a second retrieval system instead of a light reranker
   - the small val set rewarded that over-aggression, but it did not generalize
@@ -208,17 +224,17 @@ Generated files:
 - `context/test_details_tfidf_cosine_ce_weighted_top50.csv`
 - `context/test_scores_cross_encoder_top50_substantive_freeze_proc.csv`
 
-Kaggle score: 0.23573
+Public leaderboard Macro F1: 0.23573
 
 Improvement over KAGGLE-STATE-2:
-- old Kaggle score: 0.20865
-- new Kaggle score: 0.23573
+- old public Macro F1: 0.20865
+- new public Macro F1: 0.23573
 - absolute gain: +0.02708
 - relative gain: +12.98%
 
 Improvement over STARTING-STATE:
-- old Kaggle score: 0.17058
-- new Kaggle score: 0.23573
+- old public Macro F1: 0.17058
+- new public Macro F1: 0.23573
 - absolute gain: +0.06515
 - relative gain: +38.19%
 
@@ -235,9 +251,9 @@ Base input:
 - first-pass / confirmation output is a filtered top20 submission
 
 Results:
-- court docs in both first pass and confirmation: Kaggle score 0.25869
-- court docs only in confirmation: Kaggle score 0.25570
-- no court docs in either stage: Kaggle score 0.24481
+- court docs in both first pass and confirmation: public Macro F1 0.25869
+- court docs only in confirmation: public Macro F1 0.25570
+- no court docs in either stage: public Macro F1 0.24481
 
 Read:
 - the two-stage LLM removal pipeline is useful even without court docs
@@ -263,14 +279,14 @@ No-court ablation:
 `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python code/dev/law-only/lawside-retrieval/trials/llm_law_submission_reranker.py --dataset test --rerank-mode conservative-no-court-context --submission-path context/test_submission_tfidf_cosine_ce_weighted_top50.csv --llm-backend openrouter --model qwen/qwen3.6-35b-a3b --reasoning-enabled --row-start 1 --row-end 40 --parallel-requests 10 --max-tokens 5000 --temperature 0 --top-p 1 --top-k 1 --court-context-freeze-top-k 5 --no-court-batch-size 4 --court-context-confirm-removals --no-court-confirm-batch-size 4 --output-path context/test_submission_openrouter_qwen36_reasoning_confirm_no_court.csv --prediction-output-path context/test_llm_predictions_openrouter_qwen36_reasoning_confirm_no_court.csv --batch-output-path context/test_llm_batches_openrouter_qwen36_reasoning_confirm_no_court.parquet --summary-output-path context/test_llm_summary_openrouter_qwen36_reasoning_confirm_no_court.csv --overwrite`
 
 Improvement over KAGGLE-STATE-3:
-- old Kaggle score: 0.23573
-- new Kaggle score: 0.25869
+- old public Macro F1: 0.23573
+- new public Macro F1: 0.25869
 - absolute gain: +0.02296
 - relative gain: +9.74%
 
 Improvement over STARTING-STATE:
-- old Kaggle score: 0.17058
-- new Kaggle score: 0.25869
+- old public Macro F1: 0.17058
+- new public Macro F1: 0.25869
 - absolute gain: +0.08811
 - relative gain: +51.65%
 
@@ -306,9 +322,9 @@ Test submission command:
 
 `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python code/dev/law-only/court-graph-retrieval/court_document_side_retrieval.py --mode test --output-csv context/test_court_document_side_retrieval_default.csv`
 
-Kaggle result:
+Public leaderboard result:
 
-- Kaggle score: `0.25226`
+- Public Macro F1: `0.25226`
 - output: `context/test_court_document_side_retrieval_default.csv`
 
 Read:
@@ -356,16 +372,16 @@ Test submission command:
 
 `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python code/dev/law-only/court-graph-retrieval/court_document_side_retrieval.py --mode test --cross-encoder-rerank-top-k 50 --cross-encoder-rerank-model zerank-2 --cross-encoder-rerank-query-column german_translation --cross-encoder-rerank-score-path context/test_court_graph_ce_top50_base080_ce020_scores.csv --cross-encoder-rerank-base-weight 0.80 --cross-encoder-rerank-cosine-weight 0.00 --cross-encoder-rerank-ce-weight 0.20 --output-csv context/test_court_graph_ce_top50_base080_ce020.csv`
 
-Kaggle result:
+Public leaderboard result:
 
-- Kaggle score: `0.26348`
+- Public Macro F1: `0.26348`
 - output: `context/test_court_graph_ce_top50_base080_ce020.csv`
 - scores: `context/test_court_graph_ce_top50_base080_ce020_scores.csv`
 
 Improvement over the court-grounded baseline, KAGGLE-STATE-5:
 
-- old Kaggle score: `0.25226`
-- new Kaggle score: `0.26348`
+- old public Macro F1: `0.25226`
+- new public Macro F1: `0.26348`
 - absolute gain: `+0.01122`
 - relative gain: `+4.45%`
 
@@ -419,9 +435,9 @@ Test submission command:
 
 `PYTHONDONTWRITEBYTECODE=1 .venv/bin/python code/dev/law-only/court-graph-retrieval/trials/llm_law_submission_reranker.py --dataset test --submission-path context/test_court_graph_ce_top50_base080_ce020.csv --rerank-mode conservative-court-context --llm-backend openrouter --model qwen/qwen3.6-35b-a3b --reasoning-enabled --row-start 1 --row-end 40 --llm-rank-start 11 --llm-rank-end 20 --court-context-freeze-top-k 10 --court-context-batch-size 2 --court-context-confirm-removals --court-context-confirm-batch-size 2 --court-context-top-k 1 --court-context-max-chars 0 --parallel-requests 10 --max-tokens 8000 --temperature 0 --top-p 1 --top-k 1 --output-path context/test_court_graph_ce_top50_base080_ce020_llm_tail.csv --prediction-output-path context/test_court_graph_llm_tail_predictions.csv --batch-output-path context/test_court_graph_llm_tail_batches.parquet --summary-output-path context/test_court_graph_llm_tail_summary.csv --overwrite`
 
-Kaggle result:
+Public leaderboard result:
 
-- Kaggle score: `0.27569`
+- Public Macro F1: `0.27569`
 - output: `context/test_court_graph_ce_top50_base080_ce020_llm_tail.csv`
 - predictions: `context/test_court_graph_llm_tail_predictions.csv`
 - batches: `context/test_court_graph_llm_tail_batches.parquet`
@@ -429,14 +445,14 @@ Kaggle result:
 
 Improvement over KAGGLE-STATE-6:
 
-- old Kaggle score: `0.26348`
-- new Kaggle score: `0.27569`
+- old public Macro F1: `0.26348`
+- new public Macro F1: `0.27569`
 - absolute gain: `+0.01221`
 - relative gain: `+4.63%`
 
 Improvement over the court-grounded baseline, KAGGLE-STATE-5:
 
-- old Kaggle score: `0.25226`
-- new Kaggle score: `0.27569`
+- old public Macro F1: `0.25226`
+- new public Macro F1: `0.27569`
 - absolute gain: `+0.02343`
 - relative gain: `+9.29%`
