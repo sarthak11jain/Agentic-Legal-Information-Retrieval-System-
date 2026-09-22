@@ -45,9 +45,9 @@ legal-rag-demo = "legal_rag.cli:demo_main"
 legal-rag-check = "legal_rag.cli:check_main"
 
 [project.urls]
-Homepage = "https://github.com/sarthak11jain/Agentic-Legal-Information-Retrieval-System"
-Repository = "https://github.com/sarthak11jain/Agentic-Legal-Information-Retrieval-System"
-Issues = "https://github.com/sarthak11jain/Agentic-Legal-Information-Retrieval-System/issues"
+Homepage = "https://github.com/sarthak11jain/Agentic-Legal-Information-Retrieval-System-"
+Repository = "https://github.com/sarthak11jain/Agentic-Legal-Information-Retrieval-System-"
+Issues = "https://github.com/sarthak11jain/Agentic-Legal-Information-Retrieval-System-/issues"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
