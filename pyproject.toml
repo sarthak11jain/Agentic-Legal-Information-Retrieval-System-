@@ -30,7 +30,7 @@ archive = [
     "pyarrow==25.0.1",
     "python-dotenv==1.2.3",
     "scikit-learn==1.7.2",
-    "tqdm==4.70.0",
+    "tqdm==4.70.1",
 ]
 dev = [
     "build>=1.2",
