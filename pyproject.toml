@@ -24,7 +24,7 @@ dependencies = ["tomli>=2.0; python_version < '3.11'"]
 [project.optional-dependencies]
 archive = [
     "numpy==2.2.6",
-    "openai==2.37.0",
+    "openai==3.16.2",
     "pandas==2.3.3",
     "polars==1.44.1",
     "pyarrow==25.0.1",
