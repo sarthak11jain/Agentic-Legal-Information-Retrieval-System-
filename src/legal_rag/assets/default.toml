@@ -1,0 +1,8 @@
+rrf_k = 60
+seed_k = 2
+result_limit = 3
+
+[weights]
+lexical = 0.50
+rrf = 0.30
+graph = 0.20

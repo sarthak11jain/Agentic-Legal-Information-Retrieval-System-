@@ -6,7 +6,6 @@ import json
 import re
 from collections.abc import Mapping
 
-
 _DECISION_PATTERN = re.compile(
     r'"label"\s*:\s*"(?P<label>[A-D])".*?"decision"\s*:\s*"(?P<decision>KEEP|REMOVE)"',
     flags=re.S,

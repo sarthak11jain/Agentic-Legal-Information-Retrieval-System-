@@ -5,9 +5,24 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "graph-augmented-legal-information-retrieval"
 version = "0.1.0"
-description = "Graph-augmented retrieval of Swiss legal citations from complex legal questions"
+description = "A deterministic, graph-augmented citation-retrieval research package"
+readme = "README.md"
 requires-python = ">=3.10"
-dependencies = [
+license = "MIT"
+authors = [{ name = "sarthak11jain" }]
+keywords = ["information retrieval", "legal retrieval", "graph retrieval", "Swiss law"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = ["tomli>=2.0; python_version < '3.11'"]
+
+[project.optional-dependencies]
+archive = [
     "numpy==2.2.6",
     "openai==2.37.0",
     "pandas==2.3.3",
@@ -17,9 +32,50 @@ dependencies = [
     "scikit-learn==1.7.2",
     "tqdm==4.70.0",
 ]
+dev = [
+    "build>=1.2",
+    "coverage[toml]>=7.6",
+    "mypy>=1.13",
+    "pip-audit>=2.7",
+    "ruff>=0.8",
+]
+
+[project.scripts]
+legal-rag-demo = "legal_rag.cli:demo_main"
+legal-rag-check = "legal_rag.cli:check_main"
+
+[project.urls]
+Homepage = "https://github.com/sarthak11jain/Agentic-Legal-Information-Retrieval-System"
+Repository = "https://github.com/sarthak11jain/Agentic-Legal-Information-Retrieval-System"
+Issues = "https://github.com/sarthak11jain/Agentic-Legal-Information-Retrieval-System/issues"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+legal_rag = ["assets/*.json", "assets/*.toml"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.10"
+files = ["src/legal_rag", "tests"]
+strict = true
+warn_unused_configs = true
+
+[tool.coverage.run]
+branch = true
+source = ["legal_rag"]
+
+[tool.coverage.report]
+fail_under = 85
+show_missing = true
+skip_covered = true

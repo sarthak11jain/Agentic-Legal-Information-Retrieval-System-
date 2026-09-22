@@ -28,7 +28,11 @@ def macro_f1(
         raise ValueError("predictions and gold_labels must have the same length")
     if not predictions:
         return 0.0
-    return sum(_f1(set(predicted), set(gold)) for predicted, gold in zip(predictions, gold_labels)) / len(predictions)
+    total = sum(
+        _f1(set(predicted), set(gold))
+        for predicted, gold in zip(predictions, gold_labels, strict=True)
+    )
+    return total / len(predictions)
 
 
 def micro_f1(
@@ -40,7 +44,7 @@ def micro_f1(
     if len(predictions) != len(gold_labels):
         raise ValueError("predictions and gold_labels must have the same length")
     true_positive = false_positive = false_negative = 0
-    for predicted_values, gold_values in zip(predictions, gold_labels):
+    for predicted_values, gold_values in zip(predictions, gold_labels, strict=True):
         predicted = set(predicted_values)
         gold = set(gold_values)
         true_positive += len(predicted & gold)

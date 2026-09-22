@@ -5,16 +5,33 @@ on:
   pull_request:
 
 jobs:
-  checks:
+  quality:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
-      - name: Install dependencies
-        run: python -m pip install -r requirements.txt
-      - name: Run unit tests
-        run: python -m unittest discover -s tests -p "test_*.py" -v
-      - name: Compile Python sources
-        run: python -m compileall -q src scripts code
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install --upgrade pip setuptools
+      - run: python -m pip install ".[dev]"
+      - run: ruff check src tests scripts
+      - run: mypy
+      - run: coverage run -m unittest discover -s tests -p "test_*.py"
+      - run: coverage report
+      - run: legal-rag-demo
+      - run: legal-rag-check
+      - run: python -m build
+      - run: python -m compileall -q archive
+      - run: pip-audit
+
+  secret-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2

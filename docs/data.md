@@ -1,28 +1,13 @@
-# Data and repository policy
+# Data and responsible-use policy
 
-## Competition data boundary
+The supported package contains only a synthetic corpus designed to test the
+retrieval flow. It contains no Swiss legal corpus, competition records, hidden
+labels, derived labels, model weights, or credentials.
 
-This repository publishes source code, configuration examples, documentation, and methods. It does not publish the Kaggle competition data, hidden labels, test queries, or derived labels.
+The historical archive may be used only with data obtained through an
+authorized workflow and in accordance with competition, source-data, and model
+provider terms. Do not commit data, generated outputs, API keys, or submissions.
 
-The competition rules allow code and methods to be shared publicly but restrict redistributing competition data. Users must obtain the data through the permitted Kaggle workflow and comply with the competition rules and any source-data licenses.
-
-## Corpus description
-
-The competition combines Swiss legal sources, including federal-law articles and a large court-decision corpus. Public descriptions report approximately 2.47 million court-decision considerations in addition to the law-article collection. This figure describes court passages or considerations, not 2.47 million independent statutes or complete legal documents.
-
-## Expected local inputs
-
-The research pipeline refers to local files such as:
-
-- `data/test.parquet`
-- `data/train.parquet`
-- `data/laws_db.parquet`
-- `data/court_db.parquet`
-- `data/zembed_law_domain_embedding.parquet`
-- generated subquery and embedding parquet files
-
-These files are intentionally excluded from version control. Before running the full pipeline, verify the expected columns in the corresponding scripts and use only data obtained through an authorized competition or dataset workflow.
-
-## Secrets
-
-Never commit API keys, tokens, private data, hidden labels, or generated files derived from hidden evaluation data. Use a local `.env` file and keep it ignored by Git.
+This software surfaces potentially relevant legal sources. It is not legal
+advice, does not establish legal correctness, and should not be used as the
+sole basis for a legal decision.

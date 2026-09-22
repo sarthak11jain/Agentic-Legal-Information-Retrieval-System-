@@ -1,4 +1,15 @@
-"""Public package boundary for the graph-augmented legal retrieval project."""
+"""Supported, data-free primitives for graph-augmented legal retrieval."""
 
-__all__ = ["__version__"]
-__version__ = "0.1.0"
+from .config import PipelineConfig, load_config
+from .models import CitationDocument, PipelineResult, Query, RankedCitation
+from .pipeline import run_pipeline
+
+__all__ = [
+    "CitationDocument",
+    "PipelineConfig",
+    "PipelineResult",
+    "Query",
+    "RankedCitation",
+    "load_config",
+    "run_pipeline",
+]

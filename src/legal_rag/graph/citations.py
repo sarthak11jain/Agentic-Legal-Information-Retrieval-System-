@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from collections.abc import Mapping, Set
 
-
 GraphNeighbors = Mapping[str, Mapping[str, Set[str]]]
 
 

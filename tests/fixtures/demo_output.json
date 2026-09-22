@@ -1,0 +1,30 @@
+{
+  "demo_only": true,
+  "macro_f1": 0.8,
+  "network_required": false,
+  "query": "Which Swiss legal sources address proportionality and the right to be heard in an administrative proceeding?",
+  "query_id": "demo-001",
+  "ranked_citations": [
+    {
+      "citation": "Art. 29 BV",
+      "graph_score": 1.0,
+      "lexical_score": 1.0,
+      "rrf_score": 1.0,
+      "score": 1.0
+    },
+    {
+      "citation": "Art. 5 BV",
+      "graph_score": 1.0,
+      "lexical_score": 0.2,
+      "rrf_score": 1.0,
+      "score": 0.6
+    },
+    {
+      "citation": "Art. 9 BV",
+      "graph_score": 0.0,
+      "lexical_score": 0.0,
+      "rrf_score": 0.0,
+      "score": 0.0
+    }
+  ]
+}

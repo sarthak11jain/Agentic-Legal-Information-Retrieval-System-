@@ -1,0 +1,27 @@
+{
+  "query": {
+    "query_id": "demo-001",
+    "text": "Which Swiss legal sources address proportionality and the right to be heard in an administrative proceeding?",
+    "gold_citations": ["Art. 5 BV", "Art. 29 BV"]
+  },
+  "documents": [
+    {
+      "citation": "Art. 5 BV",
+      "text": "Federal constitutional principles include proportionality in administrative action.",
+      "keywords": ["proportionality", "administrative"],
+      "neighbors": ["Art. 29 BV"]
+    },
+    {
+      "citation": "Art. 29 BV",
+      "text": "Procedural guarantees include the right to be heard and fair administrative proceedings.",
+      "keywords": ["right", "heard", "procedure"],
+      "neighbors": ["Art. 5 BV"]
+    },
+    {
+      "citation": "Art. 9 BV",
+      "text": "The constitution protects good faith in relations with public authorities.",
+      "keywords": ["good faith"],
+      "neighbors": []
+    }
+  ]
+}
