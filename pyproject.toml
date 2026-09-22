@@ -26,7 +26,7 @@ archive = [
     "numpy==2.2.6",
     "openai==2.37.0",
     "pandas==2.3.3",
-    "polars==1.44.1",
+    "polars==1.44.2",
     "pyarrow==25.0.1",
     "python-dotenv==1.2.3",
     "scikit-learn==1.7.2",
